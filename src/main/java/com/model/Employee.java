@@ -1,8 +1,15 @@
 package com.model;
 
+
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
+
 
 @Entity
 @Table(name = "EMPLOYEE_DETAILS")
@@ -12,7 +19,12 @@ public class Employee {
     private int empId;
     private String empName;
     @ElementCollection
-    private Set<Address> address = new HashSet<Address>();
+    @JoinTable(name="EMP_ADDRESS",
+            joinColumns = @JoinColumn(name = "EMP_ID")
+    )
+    @GenericGenerator(name = "hilo-gen", strategy = "hilo")
+    @CollectionId(columns ={@Column(name = "ADDRESS_ID")} , type = @Type(type = "long"), generator = "hilo-gen")
+    private Collection<Address> address = new ArrayList<Address>();
 
 
 
@@ -37,11 +49,11 @@ public class Employee {
         this.empName = empName;
     }
 
-    public Set<Address> getAddress() {
+    public Collection<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(final Set<Address> address) {
+    public void setAddress(final Collection<Address> address) {
         this.address = address;
     }
 
