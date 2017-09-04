@@ -13,7 +13,7 @@ public class Employee {
     @Id @GeneratedValue
     private int empId;
     private String empName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
+    @ManyToMany(cascade = CascadeType.ALL)
     private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
 

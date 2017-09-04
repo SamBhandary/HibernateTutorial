@@ -14,6 +14,9 @@ public class Main {
         Employee emp1 = new Employee();
         emp1.setEmpName("Rajuuyy");
 
+        Employee emp2 = new Employee();
+        emp1.setEmpName("sam");
+
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleName("Car");
 
@@ -21,8 +24,9 @@ public class Main {
         vehicle1.setVehicleName("Jeep");
         emp1.getVehicle().add(vehicle);
         emp1.getVehicle().add(vehicle1);
-        vehicle.setEmployee(emp1);
-        vehicle1.setEmployee(emp1);
+        vehicle.getEmployee().add(emp1);
+        vehicle.getEmployee().add(emp2);
+
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();
