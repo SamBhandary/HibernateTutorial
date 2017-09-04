@@ -1,36 +1,31 @@
 package com.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "EMPLOYEE_DETAILSTESTS")
+@Table(name = "EMPLOYEE_DETAILS")
 public class Employee {
 
-    @EmbeddedId
-    private LoginName empId;
+    @Id @GeneratedValue
+    private int empId;
     private String empName;
-    @Embedded
-    private Address address;
+    @ElementCollection
+    private Set<Address> address = new HashSet<Address>();
 
-    //Overriding Attributes of Embedded objects helps create multiple instance of object to be used in same entity.
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name="street", column = @Column(name = "OFFICE_STREET")),
-            @AttributeOverride(name="city", column = @Column(name = "OFFICE_CITY")),
-            @AttributeOverride(name="state", column = @Column(name = "OFFICE_STATE")),
-            @AttributeOverride(name="pincode", column = @Column(name = "OFFICE_PIN"))
-    })
-    private Address officeAddress;
+
 
     private int empPhone;
     private String dob;
 
 
-    public LoginName getEmpId() {
+
+    public int getEmpId() {
         return empId;
     }
 
-    public void setEmpId(final LoginName empId) {
+    public void setEmpId(final int empId) {
         this.empId = empId;
     }
 
@@ -42,20 +37,12 @@ public class Employee {
         this.empName = empName;
     }
 
-    public Address getAddress() {
+    public Set<Address> getAddress() {
         return address;
     }
 
-    public void setAddress(final Address address) {
+    public void setAddress(final Set<Address> address) {
         this.address = address;
-    }
-
-    public Address getOfficeAddress() {
-        return officeAddress;
-    }
-
-    public void setOfficeAddress(final Address officeAddress) {
-        this.officeAddress = officeAddress;
     }
 
     public int getEmpPhone() {

@@ -2,7 +2,6 @@ package com;
 
 import com.model.Address;
 import com.model.Employee;
-import com.model.LoginName;
 import com.persistance.HibernateUtil;
 import org.hibernate.Session;
 
@@ -18,17 +17,17 @@ public class Main {
         Address address = new Address();
         address.setStreet("123 street");
         address.setCity("city");
-        emp1.setAddress(address);
+
 
         Address officeAddress = new Address();
         officeAddress.setStreet("office Street");
         officeAddress.setCity("office city");
         officeAddress.setPincode("office pin");
         officeAddress.setState("office state");
-        emp1.setOfficeAddress(officeAddress);
+        emp1.getAddress().add(address);
+        emp1.getAddress().add(officeAddress);
 
-        LoginName loginName = new LoginName(1,"raju","radha");
-        emp1.setEmpId(loginName);
+
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -40,7 +39,13 @@ public class Main {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         emp1 = (Employee) session.get(Employee.class, 1);
+        officeAddress = null;
+        //officeAddress =(Address) session.get(Address.class,1);
         System.out.print("Employee Name retrived is: "+emp1.getEmpName());
+        for(Address address1: emp1.getAddress()) {
+            System.out.print("Office Address retrived is: "+address1.getCity());
+        }
+
         session.close();
 
     }
