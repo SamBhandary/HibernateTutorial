@@ -1,5 +1,6 @@
 package com;
 
+import com.model.Address;
 import com.model.Employee;
 import com.persistance.HibernateUtil;
 import org.hibernate.Session;
@@ -12,6 +13,11 @@ public class Main {
         Employee emp1 = new Employee();
         emp1.setEmpName("Rajuuyy");
         emp1.setEmpPhone(12345);
+
+        Address address = new Address();
+        address.setStreet("123 street");
+        address.setCity("city");
+        emp1.setAddress(address);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
