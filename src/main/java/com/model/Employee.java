@@ -1,11 +1,6 @@
 package com.model;
 
 
-
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,12 +13,10 @@ public class Employee {
     @Id @GeneratedValue
     private int empId;
     private String empName;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name="EMP_ADDRESS",
             joinColumns = @JoinColumn(name = "EMP_ID")
     )
-    @GenericGenerator(name = "hilo-gen", strategy = "hilo")
-    @CollectionId(columns ={@Column(name = "ADDRESS_ID")} , type = @Type(type = "long"), generator = "hilo-gen")
     private Collection<Address> address = new ArrayList<Address>();
 
 
