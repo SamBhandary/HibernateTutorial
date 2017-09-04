@@ -19,5 +19,12 @@ public class Main {
         session.getTransaction().commit();
         session.close();
 
+        emp1 = null;
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        emp1 = (Employee) session.get(Employee.class, 1);
+        System.out.print("Employee Name retrived is: "+emp1.getEmpName());
+        session.close();
+
     }
 }
