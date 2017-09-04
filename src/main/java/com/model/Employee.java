@@ -1,15 +1,17 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "EMPLOYEE_DETAILS")
 public class Employee {
 
-    @Id @GeneratedValue
+    //Natural and Surrogate Primary Key
+    //If there is a business for a primary key then that is natural key eg, a Employee Id in employee table
+    //IF there is no any business requirement for a primary key but just to show the uniqueness then it is surrogate key
+    //eg, a serial number for the column can be surrogate key if it's sole purpose is just to show the number
+    //@GeneratedValue is for surrogate key
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private int empId;
     private String empName;
     private int empPhone;
