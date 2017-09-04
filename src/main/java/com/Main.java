@@ -2,6 +2,7 @@ package com;
 
 import com.model.Address;
 import com.model.Employee;
+import com.model.LoginName;
 import com.persistance.HibernateUtil;
 import org.hibernate.Session;
 
@@ -25,6 +26,9 @@ public class Main {
         officeAddress.setPincode("office pin");
         officeAddress.setState("office state");
         emp1.setOfficeAddress(officeAddress);
+
+        LoginName loginName = new LoginName(1,"raju","radha");
+        emp1.setEmpId(loginName);
 
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

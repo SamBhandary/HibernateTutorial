@@ -3,11 +3,11 @@ package com.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "EMPLOYEE_DETAILS")
+@Table(name = "EMPLOYEE_DETAILSTESTS")
 public class Employee {
 
-    @Id @GeneratedValue
-    private int empId;
+    @EmbeddedId
+    private LoginName empId;
     private String empName;
     @Embedded
     private Address address;
@@ -26,13 +26,11 @@ public class Employee {
     private String dob;
 
 
-
-
-    public int getEmpId() {
+    public LoginName getEmpId() {
         return empId;
     }
 
-    public void setEmpId(final int empId) {
+    public void setEmpId(final LoginName empId) {
         this.empId = empId;
     }
 
