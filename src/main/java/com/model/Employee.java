@@ -11,7 +11,17 @@ public class Employee {
     private String empName;
     @Embedded
     private Address address;
-    
+
+    //Overriding Attributes of Embedded objects helps create multiple instance of object to be used in same entity.
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name="street", column = @Column(name = "OFFICE_STREET")),
+            @AttributeOverride(name="city", column = @Column(name = "OFFICE_CITY")),
+            @AttributeOverride(name="state", column = @Column(name = "OFFICE_STATE")),
+            @AttributeOverride(name="pincode", column = @Column(name = "OFFICE_PIN"))
+    })
+    private Address officeAddress;
+
     private int empPhone;
     private String dob;
 
@@ -40,6 +50,14 @@ public class Employee {
 
     public void setAddress(final Address address) {
         this.address = address;
+    }
+
+    public Address getOfficeAddress() {
+        return officeAddress;
+    }
+
+    public void setOfficeAddress(final Address officeAddress) {
+        this.officeAddress = officeAddress;
     }
 
     public int getEmpPhone() {

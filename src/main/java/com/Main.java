@@ -19,6 +19,13 @@ public class Main {
         address.setCity("city");
         emp1.setAddress(address);
 
+        Address officeAddress = new Address();
+        officeAddress.setStreet("office Street");
+        officeAddress.setCity("office city");
+        officeAddress.setPincode("office pin");
+        officeAddress.setState("office state");
+        emp1.setOfficeAddress(officeAddress);
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(emp1);

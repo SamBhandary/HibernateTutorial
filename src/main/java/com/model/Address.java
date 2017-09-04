@@ -6,10 +6,6 @@ import javax.persistence.Embeddable;
 @Embeddable // used for value type Object.
 public class Address {
 
-    //A value type object is an object inside an entity which provides meaning to the entity.
-    // An entity is an object which has meaning to the business alone.
-    //value object don't have any meaning alone until they are associated with Entity
-
     private String street;
     @Column(name = "CITY_NAME")
     private String city;
