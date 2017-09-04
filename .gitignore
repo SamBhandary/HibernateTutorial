@@ -1,0 +1,14 @@
+# Ignored files #
+*.class
+*.orig
+*.~
+*.bak
+*.iml
+.classpath
+.project
+
+
+# Ignored directories #
+.idea/
+.settings/
+target/
