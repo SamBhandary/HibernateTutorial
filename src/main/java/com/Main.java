@@ -16,7 +16,13 @@ public class Main {
 
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleName("Car");
-        emp1.setVehicle(vehicle);
+
+        Vehicle vehicle1 = new Vehicle();
+        vehicle1.setVehicleName("Jeep");
+        emp1.getVehicle().add(vehicle);
+        emp1.getVehicle().add(vehicle1);
+        vehicle.setEmployee(emp1);
+        vehicle1.setEmployee(emp1);
 
 
         Session session = HibernateUtil.getSessionFactory().openSession();

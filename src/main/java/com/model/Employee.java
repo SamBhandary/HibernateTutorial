@@ -2,6 +2,8 @@ package com.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 @Entity
@@ -11,8 +13,10 @@ public class Employee {
     @Id @GeneratedValue
     private int empId;
     private String empName;
-    @OneToOne
-    private Vehicle vehicle;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "EMP_VEHICLE",joinColumns = @JoinColumn(name = "EMP_ID"),
+    inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
+    private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
 
 
@@ -32,11 +36,11 @@ public class Employee {
         this.empName = empName;
     }
 
-    public Vehicle getVehicle() {
+    public Collection<Vehicle> getVehicle() {
         return vehicle;
     }
 
-    public void setVehicle(final Vehicle vehicle) {
+    public void setVehicle(final Collection<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
 }

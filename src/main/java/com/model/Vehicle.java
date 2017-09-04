@@ -1,9 +1,6 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "VEHICLE_DETAILS")
@@ -13,6 +10,9 @@ public class Vehicle {
     @GeneratedValue
     private int vehicleId;
     private String vehicleName;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Employee employee;
 
 
 
@@ -30,5 +30,13 @@ public class Vehicle {
 
     public void setVehicleName(final String vehicleName) {
         this.vehicleName = vehicleName;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(final Employee employee) {
+        this.employee = employee;
     }
 }
