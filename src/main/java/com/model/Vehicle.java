@@ -12,6 +12,7 @@ public class Vehicle {
     private String vehicleName;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
 
