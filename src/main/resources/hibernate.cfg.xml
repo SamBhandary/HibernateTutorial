@@ -22,6 +22,8 @@
         <!-- List of XML mapping files -->
         <mapping class="com.model.Employee"/>
         <mapping class="com.model.Vehicle"/>
+        <mapping class="com.model.TwoWeeler"/>
+        <mapping class="com.model.FourWeeler"/>
 
     </session-factory>
 </hibernate-configuration>

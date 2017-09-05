@@ -1,20 +1,18 @@
 package com.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 @Table(name = "VEHICLE_DETAILS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "VEHICLE_TYPE",
+discriminatorType = DiscriminatorType.STRING)
 public class Vehicle {
 
     @Id
     @GeneratedValue
     private int vehicleId;
     private String vehicleName;
-
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "vehicle")
-    private Collection<Employee> employee  = new ArrayList<Employee>();
 
 
 
@@ -34,11 +32,4 @@ public class Vehicle {
         this.vehicleName = vehicleName;
     }
 
-    public Collection<Employee> getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(final Collection<Employee> employee) {
-        this.employee = employee;
-    }
 }
